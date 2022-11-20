@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_wbham"
+        android:title="@string/menu_wbham"
+        android:icon="@drawable/ic_baseline_18mp_24"/>
+    <item
+        android:id="@+id/menu_jaeeepp"
+        android:title="@string/menu_jaeeepp"
+        android:icon="@drawable/ic_baseline_18mp_24"/>
+    <item
+        android:id="@+id/menu_maddy"
+        android:title="@string/menu_maddy"
+        android:icon="@drawable/ic_baseline_18mp_24"/>
+    <item
+        android:id="@+id/menu_arr"
+        android:title="@string/menu_arr"
+        android:icon="@drawable/ic_baseline_20mp_24"/>
+    <item
+        android:id="@+id/menu_rdh"
+        android:title="@string/menu_rdh"
+        android:icon="@drawable/ic_baseline_22mp_24"/>
+</menu>
