@@ -12,7 +12,6 @@ made by [bmsk](https://github.com/YiBeomSeok)
 - feature/3-wbham-fragment
 - feature/4-Jaeeepp-fragment
 - feature/5-Arr-fragment
-- feature/6-RDH-fragment
 
 ## main branch
 main branch는 절대 직접 수정하지 않는다. develop branch에서의 모든 작업이 끝났을 때 pull request를 통해 수정된다.
@@ -71,14 +70,6 @@ made by [jaeeepp](https://github.com/Jaeeepp)
 - gradle 파일은 수정하지 않는다. 만일 수정해야 한다면 미리 공지한다.
 
 made by [Arr](https://github.com/LeeGa00)
-
-### feature/6-RDH-fragment
-- UMC standard mission week8 내용을 구현한다.
-- 그 외 다른 fragment는 수정하지 않는다.
-- 즉, fragment 관련 kt, xml 하나씩과 관련 _strings.xml만 수정한다.
-- gradle 파일은 수정하지 않는다. 만일 수정해야 한다면 미리 공지한다.
-
-made by [RDH-develop](https://github.com/RDH-develop)
 
 ## Commit convention
 commit message는 다음과 같이 작성하도록 한다.
