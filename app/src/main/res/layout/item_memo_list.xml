@@ -17,6 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/memo_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="3dp"/>
+
     <TextView
         android:id="@+id/memo_content"
         android:layout_width="wrap_content"
