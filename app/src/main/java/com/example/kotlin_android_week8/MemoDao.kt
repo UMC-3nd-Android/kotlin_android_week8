@@ -14,7 +14,7 @@ interface MemoDao {
     fun delete(memo: Memo)
 
     @Query("SELECT * FROM Memo")
-    fun selectAll()
+    fun selectAll(): List<Memo>
 
     @Query("SELECT * FROM Memo WHERE memoIdx = :memoIdx")
     fun selectByMemoIdx(memoIdx: Int)

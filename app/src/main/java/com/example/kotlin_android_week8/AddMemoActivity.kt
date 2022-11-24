@@ -14,6 +14,5 @@ class AddMemoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
 
-
     }
 }
