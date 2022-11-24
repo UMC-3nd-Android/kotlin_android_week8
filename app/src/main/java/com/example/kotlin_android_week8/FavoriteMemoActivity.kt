@@ -3,14 +3,12 @@ package com.example.kotlin_android_week8
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Selection.selectAll
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlin_android_week8.databinding.ActivityMainBinding
+import com.example.kotlin_android_week8.databinding.ActivityFavoriteMemoBinding
 
-class MainActivity : AppCompatActivity() {
-    private val viewBinding: ActivityMainBinding by lazy{
-        ActivityMainBinding.inflate(layoutInflater)
+class FavoriteMemoActivity : AppCompatActivity() {
+    private val viewBinding:ActivityFavoriteMemoBinding by lazy {
+        ActivityFavoriteMemoBinding.inflate(layoutInflater)
     }
 
     var memoList = mutableListOf<Memo>()
@@ -29,23 +27,11 @@ class MainActivity : AppCompatActivity() {
 
         val memoDataRVAdapter = MemoDataRVAdapter(memoList)
 
-        memoDataRVAdapter.setMyItemClickListener(object: MemoDataRVAdapter.MyItemClickListener {
-            override fun onItemClick(memo: Memo) {
-
-            }
-
-            override fun onRemoveMemo(position: Int) {
-                val memo = memoList[position]
-                roomDb?.memoDao()?.delete(memo)
-                memoDataRVAdapter.removeItem(position)
-            }
-        })
-
         viewBinding.rvMemoBox.adapter = memoDataRVAdapter
         viewBinding.rvMemoBox.layoutManager = LinearLayoutManager(this)
 
-        viewBinding.btnNewMemo.setOnClickListener(){
-            var intent = Intent(this, AddMemoActivity::class.java)
+        viewBinding.btnBack.setOnClickListener(){
+            var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }

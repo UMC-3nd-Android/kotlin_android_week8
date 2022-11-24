@@ -8,14 +8,14 @@
 
     <EditText
         android:id="@+id/title"
-        android:layout_width="120dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:textSize="40sp"
         android:text="Title"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="20dp"
-        android:padding="2dp"
+        android:padding="5dp"
         android:background="@drawable/recycle_memo_border"/>
 
     <EditText
