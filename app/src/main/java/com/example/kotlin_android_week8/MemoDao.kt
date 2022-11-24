@@ -17,7 +17,7 @@ interface MemoDao {
     fun selectAll(): List<Memo>
 
     @Query("SELECT * FROM Memo WHERE memoIdx = :memoIdx")
-    fun selectByMemoIdx(memoIdx: Int)
+    fun selectByMemoIdx(memoIdx: Int): Memo
 
     @Query("UPDATE Memo SET title = :title WHERE memoIdx = :memoIdx")
     fun updateTitleByMemoIdx(title:String, memoIdx: Int)
