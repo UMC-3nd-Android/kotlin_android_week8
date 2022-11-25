@@ -1,5 +1,6 @@
 package com.example.kotlin_android_week8
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -16,8 +17,17 @@ class AddMemoActivity : AppCompatActivity() {
 
         viewBinding.sendButton.setOnClickListener(){
             val roomDb = AppDatabase!!.getInstance(this)
-            if(viewBinding.title.length() != 0 && viewBinding.memoContent.length() != 0)
-                roomDb?.memoDao()?.insert(Memo(viewBinding.title.text.toString(), viewBinding.memoContent.text.toString()))
+            if(viewBinding.title.length() != 0 && viewBinding.memoContent.length() != 0) {
+                roomDb?.memoDao()?.insert(
+                    Memo(
+                        viewBinding.title.text.toString(),
+                        viewBinding.memoContent.text.toString()
+                    )
+                )
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
             else
                 Toast.makeText(this, "입력하지 않은 정보가 있습니다.", Toast.LENGTH_SHORT).show()
         }

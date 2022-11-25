@@ -1,5 +1,6 @@
 package com.example.kotlin_android_week8
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.text.Selection.selectAll
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin_android_week8.databinding.ActivityMainBinding
+import com.example.kotlin_android_week8.databinding.ItemMemoListBinding
 
 class MainActivity : AppCompatActivity() {
     private val viewBinding: ActivityMainBinding by lazy{
@@ -22,12 +24,11 @@ class MainActivity : AppCompatActivity() {
         val roomDb = AppDatabase!!.getInstance(this)
 
         if (roomDb != null) {
-            roomDb.memoDao().insert(Memo("db save check", "please!!!"))
             val savedMemo = roomDb.memoDao().selectAll()
             memoList.addAll(savedMemo)
         }
 
-        val memoDataRVAdapter = MemoDataRVAdapter(memoList)
+        val memoDataRVAdapter = MemoDataRVAdapter(this, memoList)
 
         memoDataRVAdapter.setMyItemClickListener(object: MemoDataRVAdapter.MyItemClickListener {
             override fun onItemClick(memo: Memo) {
@@ -46,6 +47,11 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding.btnNewMemo.setOnClickListener(){
             var intent = Intent(this, AddMemoActivity::class.java)
+            startActivity(intent)
+        }
+
+        viewBinding.btnFavorite.setOnClickListener(){
+            var intent = Intent(this, FavoriteMemoActivity::class.java)
             startActivity(intent)
         }
     }

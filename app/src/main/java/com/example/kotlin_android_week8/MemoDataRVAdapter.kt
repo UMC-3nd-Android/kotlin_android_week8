@@ -1,15 +1,34 @@
 package com.example.kotlin_android_week8
 
+import android.content.Context
+import android.nfc.Tag
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_android_week8.databinding.ItemMemoListBinding
 
-class MemoDataRVAdapter(private val dataList:MutableList<Memo>): RecyclerView.Adapter<MemoDataRVAdapter.DataViewHolder>() {
+class MemoDataRVAdapter(private val context: Context, private val dataList:MutableList<Memo>): RecyclerView.Adapter<MemoDataRVAdapter.DataViewHolder>() {
     inner class DataViewHolder(private val viewBinding: ItemMemoListBinding) : RecyclerView.ViewHolder(viewBinding.root){
+        val sharedPrefs = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPrefs.edit()
+
         fun bind(data: Memo) {
             viewBinding.memoTitle.text = data.title
             viewBinding.memoContent.text = data.content
+            viewBinding.favorite.isChecked = sharedPrefs.getBoolean(data.title, false)
+
+            viewBinding.favorite.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    editor.putBoolean(data.title, true)
+                    Log.d("check", "mySharedPrefs is saved")
+                }
+                else {
+                    editor.remove(data.title)
+                    Log.d("check", "mySharedPrefs isn't saved")
+                }
+                editor.apply()
+            }
         }
     }
 
@@ -23,11 +42,11 @@ class MemoDataRVAdapter(private val dataList:MutableList<Memo>): RecyclerView.Ad
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.bind(dataList[position])
         holder.itemView
+
     }
 
     // 표한할 item 의 총 개수
     override fun getItemCount(): Int = dataList.size
-
 
     interface MyItemClickListener{
         fun onItemClick(memo : Memo)
@@ -51,5 +70,4 @@ class MemoDataRVAdapter(private val dataList:MutableList<Memo>): RecyclerView.Ad
         notifyItemInserted(dataList.size)
         notifyItemRangeChanged(dataList.size, getItemCount());
     }
-
 }

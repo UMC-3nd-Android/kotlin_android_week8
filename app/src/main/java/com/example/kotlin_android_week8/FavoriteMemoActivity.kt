@@ -1,8 +1,9 @@
 package com.example.kotlin_android_week8
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin_android_week8.databinding.ActivityFavoriteMemoBinding
 
@@ -19,13 +20,16 @@ class FavoriteMemoActivity : AppCompatActivity() {
 
         val roomDb = AppDatabase!!.getInstance(this)
 
+        val sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPrefs.edit()
+
         if (roomDb != null) {
-            roomDb.memoDao().insert(Memo("db save check", "please!!!"))
-            val savedMemo = roomDb.memoDao().selectAll()
-            memoList.addAll(savedMemo)
+            val prefs = sharedPrefs.all
+            for (i in prefs)
+                memoList.add(roomDb.memoDao().selectByTitle(i.key.toString()))
         }
 
-        val memoDataRVAdapter = MemoDataRVAdapter(memoList)
+        val memoDataRVAdapter = MemoDataRVAdapter(this, memoList)
 
         viewBinding.rvMemoBox.adapter = memoDataRVAdapter
         viewBinding.rvMemoBox.layoutManager = LinearLayoutManager(this)
