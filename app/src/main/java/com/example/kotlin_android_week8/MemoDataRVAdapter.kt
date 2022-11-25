@@ -25,7 +25,7 @@ class MemoDataRVAdapter(private val context: Context, private val dataList:Mutab
                 }
                 else {
                     editor.remove(data.title)
-                    Log.d("check", "mySharedPrefs isn't saved")
+                    Log.d("check", "mySharedPrefs isn't saved or deleted!")
                 }
                 editor.apply()
             }
@@ -41,8 +41,10 @@ class MemoDataRVAdapter(private val context: Context, private val dataList:Mutab
     // ViewHolder 가 실제로 데이터를 표시해야할 때 호출
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.bind(dataList[position])
-        holder.itemView
 
+        holder.itemView.setOnClickListener(){
+            mItemClickListener.onRemoveMemo(position)
+        }
     }
 
     // 표한할 item 의 총 개수
