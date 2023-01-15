@@ -21,7 +21,8 @@ class AddMemoActivity : AppCompatActivity() {
                 roomDb?.memoDao()?.insert(
                     Memo(
                         viewBinding.title.text.toString(),
-                        viewBinding.memoContent.text.toString()
+                        viewBinding.memoContent.text.toString(),
+                        false
                     )
                 )
                 val intent = Intent(this, MainActivity::class.java)

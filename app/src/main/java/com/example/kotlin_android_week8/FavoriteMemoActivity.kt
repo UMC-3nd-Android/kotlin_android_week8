@@ -12,14 +12,13 @@ class FavoriteMemoActivity : AppCompatActivity() {
         ActivityFavoriteMemoBinding.inflate(layoutInflater)
     }
 
-    var memoList = mutableListOf<Memo>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
 
         val roomDb = AppDatabase!!.getInstance(this)
 
+        /*
         val sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val editor = sharedPrefs.edit()
 
@@ -27,9 +26,11 @@ class FavoriteMemoActivity : AppCompatActivity() {
             val prefs = sharedPrefs.all
             for (i in prefs)
                 memoList.add(roomDb.memoDao().selectByTitle(i.key.toString()))
-        }
+        } */
 
-        val memoDataRVAdapter = MemoDataRVAdapter(this, memoList)
+        val memoList = roomDb?.memoDao()?.selectByFavorite(true)
+
+        val memoDataRVAdapter = MemoDataRVAdapter(this, memoList!!)
 
         viewBinding.rvMemoBox.adapter = memoDataRVAdapter
         viewBinding.rvMemoBox.layoutManager = LinearLayoutManager(this)

@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class Memo(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "content") val content: String,
+    @ColumnInfo(name = "switch") val on:Boolean,
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "memoIdx") val memoIdx: Int = 0
 )

@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         val memoDataRVAdapter = MemoDataRVAdapter(this, memoList)
-        val sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPrefs.edit()
+        //val sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        //val editor = sharedPrefs.edit()
 
         memoDataRVAdapter.setMyItemClickListener(object: MemoDataRVAdapter.MyItemClickListener {
             override fun onItemClick(memo: Memo) {
@@ -40,8 +40,8 @@ class MainActivity : AppCompatActivity() {
 
             override fun onRemoveMemo(position: Int) {
                 val memo = memoList[position]
-                editor.remove(memo.title)
-                editor.apply()
+                // editor.remove(memo.title)
+                //editor.apply()
                 Log.d("check", "mySharedPrefs is deleted.")
                 roomDb?.memoDao()?.delete(memo)
                 memoDataRVAdapter.removeItem(position)
